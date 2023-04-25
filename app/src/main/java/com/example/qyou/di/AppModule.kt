@@ -1,6 +1,7 @@
 package com.example.qyou.di
 
 import com.example.qyou.network.QuestionAPI
+import com.example.qyou.repository.QuestionRepository
 import com.example.qyou.util.Constants
 import com.google.gson.Gson
 import dagger.Module
@@ -14,7 +15,9 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
+    @Singleton
+    @Provides
+    fun providesQuestionRepository(api: QuestionAPI) = QuestionRepository(api)
     @Singleton
     @Provides
     fun providesQuestionAPI(): QuestionAPI{
